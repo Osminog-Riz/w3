@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>ThE FoRm</title>
+		<title>Form anime life</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
