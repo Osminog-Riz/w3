@@ -66,7 +66,7 @@ if	(empty($_POST["biography"])){
 	echo "Не заполнена биография.<br/>";
 	$errors	= TRUE;
 }
-if	(empty($_POST["consent"])&& ($_POST['check'] !== null)){
+if	(empty($_POST["consent"])&& ($_POST['consent'] == null)){
 	echo "Вы не согласились с условиями контракта.<br/>";
 	$errors	= TRUE;	
 }
@@ -74,8 +74,8 @@ if	(empty($_POST["consent"])&& ($_POST['check'] !== null)){
 if($errors){
 	exit();
 }
-$user = 'ваш логин';
-$pass = 'ваш пароль';
+$user = 'u16355';
+$pass = 'hZME7BdW';
 $db = new PDO('mysql:host=localhost; dbname=u16355', $user, $pass,
 array(PDO::ATTR_PERSISTENT => ));
 try {
