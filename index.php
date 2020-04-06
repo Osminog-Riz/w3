@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   include('form.php');
   exit();
 }
-$errors = FALSE;
+$errors = TRUE;
 $name = $_POST["name"];
 $email = $_POST["email"];
 $year = $_POST["year"];
@@ -18,35 +18,35 @@ $bio = $_POST["biography"];
 $consent = $_POST["consent"];
 
 if (empty($name)) {
-  echo	"Укажите имя.<br/>";
+  print('Укажите имя.<br/>')	;
   $errors = TRUE;
 }else if(!preg_match("#^[aA-zZ0-9\-_]+$#",$_POST["name"])){
 	print('Недопустимые символы.<br/>');
 	$errors=TRUE;
 }
 if (empty($email)){
-	echo "Укажите адрес.<br/>";
+	print('Укажите адрес.<br/>');
 	$errors = TRUE;
 }
 if	(empty($year)){
-	echo "Укажите год рождения.<br/>";
+	print('Укажите год рождения.<br/>');
 	$errors = TRUE;
 }
 if	(empty($_POST["sex"])){
-	echo "Укажите пол.<br/>";
+	print('Укажите пол.<br/>');
 	$errors	= TRUE;
 }
 if	(empty($_POST["limbs"])){
-	echo "Укажите кол-во конечностей.<br/>";
+	print('Укажите кол-во конечностей.<br/>');
 	$errors	= TRUE;	
 }
 $Sverh = $_POST["sverh"];
   if(!isset($Sverh))
   {
-    echo("<p>Вы не выбрали способности</p>\n");
+    print('<p>Вы не выбрали способности</p>\n');
   }
   else
-  {	echo"Ваши способности:<br/>";
+  {	print('Ваши способности:<br/>');
     for($i=0; $i < count($Sverh); $i++)
     {
 		if($Sverh[$i]=="net")$flag=TRUE;
@@ -63,11 +63,11 @@ $Sverh = $_POST["sverh"];
  }
  $sverh_separated=implode(' ',$Sverh);
 if	(empty($_POST["biography"])){
-	echo "Не заполнена биография.<br/>";
+	print('Не заполнена биография.<br/>');
 	$errors	= TRUE;
 }
-if	(empty($_POST["consent"])&& ($_POST['consent'] == null)){
-	echo "Вы не согласились с условиями контракта.<br/>";
+if	(empty($_POST["consent"])){
+	print('Вы не согласились с условиями контракта.<br/>');
 	$errors	= TRUE;	
 }
 
@@ -77,7 +77,7 @@ if($errors){
 $user = 'u16355';
 $pass = 'hZME7BdW';
 $db = new PDO('mysql:host=localhost; dbname=u16355', $user, $pass,
-array(PDO::ATTR_PERSISTENT => ));
+array(PDO::ATTR_PERSISTENT => TRUE));
 try {
  $stmt = $db->prepare("INSERT INTO application (name, email, birth, sex, limbs, sverh, bio,consent) 
  VALUES (:name, :email, :birth, :sex, :limbs, :birth,:bio, :consent)");
