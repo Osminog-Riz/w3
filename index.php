@@ -16,7 +16,13 @@ $flag=FALSE;
 $limbs = $_POST["limbs"];
 $bio = $_POST["biography"];	
 $consent = $_POST["consent"];
-
+// Костыль
+    if (isset($_POST['check']) && ($_POST['check'] !== null)) {
+        $check = 'on';
+    }
+    else {
+        $check = 'off';
+    }
 if (empty($name)) {
   echo	"Укажите имя.<br/>";
   $errors = TRUE;
@@ -66,7 +72,7 @@ if	(empty($_POST["biography"])){
 	echo "Не заполнена биография.<br/>";
 	$errors	= TRUE;
 }
-if	(empty($_POST["consent"])){
+if	(empty($_POST["consent"])&& ($_POST['check'] !== null)){
 	echo "Вы не согласились с условиями контракта.<br/>";
 	$errors	= TRUE;	
 }
@@ -76,8 +82,8 @@ if($errors){
 }
 $user = 'ваш логин';
 $pass = 'ваш пароль';
-$db = new PDO('mysql:host=localhost;dbname=ваш логин', $user, $pass,
-array(PDO::ATTR_PERSISTENT => true));
+$db = new PDO('mysql:host=localhost; dbname=u16355', $user, $pass,
+array(PDO::ATTR_PERSISTENT => ));
 try {
  $stmt = $db->prepare("INSERT INTO application (name, email, birth, sex, limbs, sverh, bio,consent) 
  VALUES (:name, :email, :birth, :sex, :limbs, :birth,:bio, :consent)");
