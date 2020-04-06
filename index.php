@@ -16,13 +16,7 @@ $flag=FALSE;
 $limbs = $_POST["limbs"];
 $bio = $_POST["biography"];	
 $consent = $_POST["consent"];
-// Костыль
-    if (isset($_POST['check']) && ($_POST['check'] !== null)) {
-        $check = 'on';
-    }
-    else {
-        $check = 'off';
-    }
+
 if (empty($name)) {
   echo	"Укажите имя.<br/>";
   $errors = TRUE;
